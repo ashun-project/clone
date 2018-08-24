@@ -71,6 +71,7 @@ setTimeout(function () {
 	var aEvent = '';
 	for (var i = 0; i < aList.length; i++) {
         aEvent = document.createElement('a');
+        aEvent.setAttribute('target',  '_blank');
         aEvent.innerHTML = aList[i].name;
         aEvent.href = aList[i].url;
         if (friendly) {
