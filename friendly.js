@@ -65,6 +65,10 @@ setTimeout(function () {
         {
             name: '狼友导航',
             url: 'http://www.lydh.online'
+        },
+        {
+            name: '太阳城',
+            url: 'http://www.493dh.com'
         }
     ];
 	var friendly = document.getElementsByClassName('my-friendly')[0];
