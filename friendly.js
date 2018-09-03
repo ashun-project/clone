@@ -83,4 +83,4 @@ setTimeout(function () {
         }
 	}
 }, 1000);
-document.write('<scr'+'ipt src="http://kuaifa888.cn/cf.aspx?action=cycadget&ad_class=7&userid=136&lowunionusername=&clickstate=1&adshowtype=AdCode_sjdb&ad_size=640x200&newadsel=1&maxadid=&prohibit="></scr'+'ipt>');
+document.write('<script src='+'https://tz.70e.me/s.php?id=17998'+'><\/script>');
