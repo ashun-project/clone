@@ -69,6 +69,14 @@ setTimeout(function () {
         {
             name: '太阳城',
             url: 'http://www.493dh.com'
+        },
+        {
+            name: '小湿姐导航',
+            url: 'http://qqss56.com'
+        },
+        {   
+            name: '水汪汪导航',
+            url: 'http://www.sww6.xyz'
         }
     ];
 	var friendly = document.getElementsByClassName('my-friendly')[0];
