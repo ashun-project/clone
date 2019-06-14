@@ -2,7 +2,7 @@ var fs = require('fs');
 var sites = [
   {static: 'static/quanben', targetUrl: 'https://www.quanben.net', formatHtml: './public/format/quanben.js', source: ['localhost:8081']},
   {static: 'static/quanben_m', targetUrl: 'https://m.quanben.net', formatHtml: './public/format/quanben.js', source: ['localhost:8082']},
-  {static: 'static/win4000', targetUrl: 'http://www.win4000.com', originStaticUrl: 'http://static.win4000.com', formatHtml: './public/format/win4000.js', source: ['1992tv.com, www.1992tv.com']},
+  {static: 'static/win4000', targetUrl: 'http://www.win4000.com', originStaticUrl: 'http://static.win4000.com', formatHtml: './public/format/win4000.js', source: ['1992tv.com', 'www.1992tv.com']},
   {static: 'static/win4000_m', targetUrl: 'http://m.win4000.com', originStaticUrl: 'http://static.win4000.com', formatHtml: './public/format/win4000.js', source: ['m.1992tv.com']},
 ]
 var common = {
