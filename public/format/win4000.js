@@ -72,8 +72,9 @@ function getAjax(url) {
     });
 }
 
-var addScript = "<script>if((navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i))){var _url = document.domain;if(_url.indexOf('m.sexs8.com') == -1){window.location.href = 'm.sexse.com';}}</script>";
+var addScript = "<script>if((navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i))){var _url = document.domain;if(_url.indexOf('m.1992tv.com') == -1){window.location.href = 'm.1992tv.com';}}</script>";
 var lazyjs = "<script>$(function() {$('img').lazyload({skip_invisible : false});});</script>";
+var mo = '<script type="text/javascript">uaredirect("http://m.1992tv.com/")</script>';
 var rel = /https\:\/\/www\.win4000\.com|\/\/www\.win4000\.com|http\:\/\/www\.win4000\.com|https\:\/\/\.win4000\.com|http\:\/\/\.win4000\.com|www\.win4000\.com/ig;
 var rel2 = /https\:\/\/m\.win4000\.com|\/\/m\.win4000\.com|http\:\/\/m\.win4000\.com|m\.win4000\.com/ig;
 var rel3 = /http\:\/\/static\.win4000\.com/ig;
@@ -167,14 +168,17 @@ function getHtml(req, resour) {
             }
             // $('.item-youlian').html(friendHtml);
             // head.append('<meta name="referrer" content="never">');
-            // head.append(lazyjs);
-            body.append(lazyjs)
+            if (resour === 'http://www.win4000.com') {
+                head.append(mo);
+            }
+            body.append(lazyjs);
             // body.append("<script>var imgUrl='//www'+'.win4000'+'.net';var imgs = document.querySelectorAll('img');for(var i = 0; i < imgs.length; i++){var src = imgs[i].getAttribute('src');if(src.indexOf('imgStatic') > -1){imgs[i].setAttribute('src', src.replace('imgStatic', imgUrl));}}</script>");
             var html = $.html();
-            html = html.replace('全本小说', '阿顺小说');
+            html = html.replace('美桌网', '1992tv');
+            html = html.replace('&#x7F8E;&#x684C;&#x7F51;', '1992tv');
             html = html.replace(/&#x5168;&#x672C;&#x5C0F;&#x8BF4;/g, '&#x963F;&#x987A;&#x5C0F;&#x8BF4;');
-            html = html.replace(rel2, 'http://m.sexs8.com');
-            html = html.replace(rel, 'http://www.sexs8.com');
+            html = html.replace(rel2, 'http://m.1992tv.com');
+            html = html.replace(rel, 'http://www.1992tv.com');
             resolve(html)
         }).catch(err => {
             reject(err)

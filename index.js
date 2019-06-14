@@ -2,8 +2,9 @@ var express = require('express');
 var fs = require('fs');
 var request = require('request');
 var common = require('./common');
+var compress = require('compression');
 var app = express();
-var static = './static';
+app.use(compress());
 app.use('/public', express.static('public'));
 
 app.all('/*', function(req, res, next) {
@@ -72,4 +73,4 @@ app.all('/*', function(req, res, next) {
     }
   }
 })
-var server = app.listen(8083)
+var server = app.listen(8084)
