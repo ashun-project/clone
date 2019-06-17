@@ -55,50 +55,68 @@ function getAjax(url) {
             }
         };
         request(options, function (error, response, body) {
+            // if (response && response.statusCode === 404) {
+            //     reject(response.statusMessage);
+            //     return;
+            // }
+            // try {
+            //     if (error) throw error;
+            //     var buf = iconv.decode(body, 'utf-8');//获取内容进行转码
+            //     var htmlHeadCharset = '';
+            //     var htmlHeadContent = '';
+            //     var decodeHtmlData;
+            //     var charset = '';
+            //     $ = cheerio.load(buf);
+
+
+            //     $('meta', 'head').each(function (i, e) {
+
+            //         htmlHeadCharset = $(e).attr('charset');
+            //         htmlHeadContent = $(e).attr('content');
+
+            //         if (typeof (htmlHeadCharset) != 'undefined') {
+
+            //             charset = htmlHeadCharset;
+            //         }
+
+            //         if (typeof (htmlHeadContent) != 'undefined') {
+
+            //             if (htmlHeadContent.match(/charset=/ig)) {
+
+            //                 index = htmlHeadContent.indexOf('=');
+            //                 charset = htmlHeadContent.substring(index + 1);
+            //             }
+            //         }
+            //     });
+
+            //     //此处为什么需要对整个网页进行转吗，是因为cheerio这个组件不能够返回buffer,iconv则无法转换之
+            //     if (charset.match(/gb/ig)) {
+
+            //         decodeHtmlData = iconv.decode(body, 'gbk');
+            //     }
+            //     else {//因为有可能返回的网页中不存在charset字段，因此默认都是按照utf8进行处理
+
+            //         decodeHtmlData = iconv.decode(body, 'utf8');
+            //     }
+            //     $ = cheerio.load(decodeHtmlData);
+            //     resolve();
+            // } catch (e) {
+            //     console.log(options.url, 'eeeeeeeß')
+            //     reject(e);
+            // }
             if (response && response.statusCode === 404) {
                 reject(response.statusMessage);
                 return;
             }
             try {
                 if (error) throw error;
-                var buf = iconv.decode(body, 'utf-8');//获取内容进行转码
-                var htmlHeadCharset = '';
-                var htmlHeadContent = '';
-                var decodeHtmlData;
-                var charset = '';
+                var buf = iconv.decode(body, 'gbk');//获取内容进行转码
                 $ = cheerio.load(buf);
-
-
-                $('meta', 'head').each(function (i, e) {
-
-                    htmlHeadCharset = $(e).attr('charset');
-                    htmlHeadContent = $(e).attr('content');
-
-                    if (typeof (htmlHeadCharset) != 'undefined') {
-
-                        charset = htmlHeadCharset;
-                    }
-
-                    if (typeof (htmlHeadContent) != 'undefined') {
-
-                        if (htmlHeadContent.match(/charset=/ig)) {
-
-                            index = htmlHeadContent.indexOf('=');
-                            charset = htmlHeadContent.substring(index + 1);
-                        }
-                    }
-                });
-
-                //此处为什么需要对整个网页进行转吗，是因为cheerio这个组件不能够返回buffer,iconv则无法转换之
-                if (charset.match(/gb/ig)) {
-
-                    decodeHtmlData = iconv.decode(body, 'gbk');
+                var contHead = $('head').html();
+                if (contHead.indexOf('application/xhtml+xml;charset=utf-8') > -1) {
+                    buf = iconv.decode(body, 'utf8');//获取内容进行转码
+                    $ = cheerio.load(buf);
                 }
-                else {//因为有可能返回的网页中不存在charset字段，因此默认都是按照utf8进行处理
-
-                    decodeHtmlData = iconv.decode(body, 'utf8');
-                }
-                $ = cheerio.load(decodeHtmlData);
                 resolve();
             } catch (e) {
                 console.log(options.url, 'eeeeeeeß')
