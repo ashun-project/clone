@@ -176,6 +176,7 @@ function getHtml(req, resour) {
             var html = $.html();
             html = html.replace('美桌网', '1992tv');
             html = html.replace('&#x7F8E;&#x684C;&#x7F51;', '1992tv');
+            html = html.replace('win4000@126.com', 'qqzhpt@gmail.com');
             html = html.replace(/&#x5168;&#x672C;&#x5C0F;&#x8BF4;/g, '&#x963F;&#x987A;&#x5C0F;&#x8BF4;');
             html = html.replace(rel2, 'http://m.1992tv.com');
             html = html.replace(rel, 'http://www.1992tv.com');
