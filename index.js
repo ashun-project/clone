@@ -8,11 +8,14 @@ app.use(compress());
 app.use('/public', express.static('public'));
 
 app.all('/*', function(req, res, next) {
-  if (req.url == '/favicon.ico') {
+  if (req.url == '/favicon.ico' || !req.headers['host']) {
     res.end()
     return
   }
   var siteObj = common.site(req);
+  if (!siteObj || !siteObj.formatHtml) {
+    console.log(req.headers['host'])
+  }
   var getHtml = require(siteObj.formatHtml);
   var reqUrl = common.getFile(siteObj.static + req.url.split('?')[0]);
   var resource = fs.existsSync(reqUrl);
@@ -73,4 +76,4 @@ app.all('/*', function(req, res, next) {
     }
   }
 })
-var server = app.listen(8084)
+var server = app.listen(8183)

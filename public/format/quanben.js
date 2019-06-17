@@ -55,7 +55,7 @@ function getAjax(url) {
             }
         };
         request(options, function (error, response, body) {
-            if (response.statusCode === 404) {
+            if (response && response.statusCode === 404) {
                 reject(response.statusMessage);
                 return;
             }
@@ -190,7 +190,7 @@ function getHtml(req, resour) {
             $('#notice').remove();
             $('.item-youlian').html(friendHtml);
             // head.append('<meta name="referrer" content="never">');
-            // head.append(addScript);
+            head.append(addScript);
            
             // body.append("<script>var imgUrl='//www'+'.quanben'+'.net';var imgs = document.querySelectorAll('img');for(var i = 0; i < imgs.length; i++){var src = imgs[i].getAttribute('src');if(src.indexOf('imgStatic') > -1){imgs[i].setAttribute('src', src.replace('imgStatic', imgUrl));}}</script>");
             var html = $.html();
