@@ -214,6 +214,7 @@ function getHtml(req, resour) {
             var html = $.html();
             html = html.replace('全本小说', '阿顺小说');
             html = html.replace(/&#x5168;&#x672C;&#x5C0F;&#x8BF4;/g, '&#x963F;&#x987A;&#x5C0F;&#x8BF4;');
+            html = html.replace('wWw.QuanBenShu.net', 'wWw.seXs8.cOm');
             html = html.replace(rel2, 'http://m.sexs8.com');
             html = html.replace(rel, 'http://www.sexs8.com');
             resolve(html)
