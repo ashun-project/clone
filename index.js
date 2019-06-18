@@ -40,19 +40,23 @@ app.all('/*', function(req, res, next) {
       if (siteObj.originStaticUrl && req.url.indexOf('/origin_static/') > -1) { // 第三方资源
         stUrl = siteObj.originStaticUrl + req.url.replace('/origin_static', '');
       }
-      request({
-        url: stUrl,   // 请求的URL
-        method: 'GET',                   // 请求方法
-        headers: {                       // 指定请求头
-          'Accept-Language': 'zh-CN,zh;q=0.8',         // 指定 Accept-Language
-          'Cookie': '__utma=4454.11221.455353.21.143;' // 指定 Cookie
-        }
-      }).pipe(fs.createWriteStream(reqUrl)).on('finish',function() {
-        var content = fs.readFileSync(reqUrl, "binary");
-        res.writeHead(200, {'Content-Type': common.getContType(houZ)})
-        res.write(content, "binary")
+      try{
+        request({
+          url: stUrl,   // 请求的URL
+          method: 'GET',                   // 请求方法
+          headers: {                       // 指定请求头
+            'Accept-Language': 'zh-CN,zh;q=0.8',         // 指定 Accept-Language
+            'Cookie': '__utma=4454.11221.455353.21.143;' // 指定 Cookie
+          }
+        }).pipe(fs.createWriteStream(reqUrl)).on('finish',function() {
+          var content = fs.readFileSync(reqUrl, "binary");
+          res.writeHead(200, {'Content-Type': common.getContType(houZ)})
+          res.write(content, "binary")
+          res.end();
+        })
+      } catch {
         res.end();
-      })
+      }
     }
   } else {
     var expireTime = 0;
