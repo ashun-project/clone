@@ -9,7 +9,14 @@ app.use('/public', express.static('public'));
 
 app.all('/*', function(req, res, next) {
   if (req.url == '/favicon.ico' || !req.headers['host']) {
-    res.end()
+    res.end();
+    return
+  }
+  if (req.url == '/robots.txt') {
+    res.writeHead(200, {'Content-Type': 'text/plain'})
+    var content = fs.readFileSync('./public/robots.txt', "binary");
+    res.write(content, "binary")
+    res.end();
     return
   }
   var siteObj = common.site(req);
@@ -40,23 +47,25 @@ app.all('/*', function(req, res, next) {
       if (siteObj.originStaticUrl && req.url.indexOf('/origin_static/') > -1) { // 第三方资源
         stUrl = siteObj.originStaticUrl + req.url.replace('/origin_static', '');
       }
-      try{
-        request({
-          url: stUrl,   // 请求的URL
-          method: 'GET',                   // 请求方法
-          headers: {                       // 指定请求头
-            'Accept-Language': 'zh-CN,zh;q=0.8',         // 指定 Accept-Language
-            'Cookie': '__utma=4454.11221.455353.21.143;' // 指定 Cookie
-          }
-        }).pipe(fs.createWriteStream(reqUrl)).on('finish',function() {
-          var content = fs.readFileSync(reqUrl, "binary");
-          res.writeHead(200, {'Content-Type': common.getContType(houZ)})
-          res.write(content, "binary")
-          res.end();
-        })
-      } catch {
+      var getReq = request({
+        url: stUrl,   // 请求的URL
+        method: 'GET',                   // 请求方法
+        headers: {                       // 指定请求头
+          'Accept-Language': 'zh-CN,zh;q=0.8',         // 指定 Accept-Language
+          'Cookie': '__utma=4454.11221.455353.21.143;' // 指定 Cookie
+        }
+      })
+      var getPipe = getReq.pipe(fs.createWriteStream(reqUrl))
+      getPipe.on('error', function() {
+        res.writeHead(404, {'Content-Type': houZ});
         res.end();
-      }
+      })
+      getPipe.on('finish',function() {
+        var content = fs.readFileSync(reqUrl, "binary");
+        res.writeHead(200, {'Content-Type': common.getContType(houZ)});
+        res.write(content, "binary");
+        res.end();
+      })
     }
   } else {
     var expireTime = 0;
