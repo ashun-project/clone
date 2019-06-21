@@ -55,12 +55,16 @@ function getAjax(url) {
             }
         };
         request(options, function (error, response, body) {
-            if (response.statusCode === 404) {
-                reject(response.statusMessage);
+            if (error) {
+                reject('未知异常');
                 return;
-            }
+            };
+            //页面本身有404
+            // if (response.statusCode === 404) {
+            //     reject(response.statusMessage);
+            //     return;
+            // }
             try {
-                if (error) throw error;
                 var buf = iconv.decode(body, 'utf-8');//获取内容进行转码
                 $ = cheerio.load(buf);
                 resolve();

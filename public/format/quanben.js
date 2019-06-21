@@ -104,12 +104,15 @@ function getAjax(url) {
             //     console.log(options.url, 'eeeeeeeß')
             //     reject(e);
             // }
+            if (error) {
+                reject('未知异常');
+                return;
+            };
             if (response && response.statusCode === 404) {
                 reject(response.statusMessage);
                 return;
             }
             try {
-                if (error) throw error;
                 var buf = iconv.decode(body, 'gbk');//获取内容进行转码
                 $ = cheerio.load(buf);
                 var contHead = $('head').html();
@@ -126,7 +129,7 @@ function getAjax(url) {
     });
 }
 
-var addScript = "<script>if((navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i))){var _url = document.domain;if(_url.indexOf('m.sexs8.com') == -1){window.location.href = 'm.sexse.com';}}</script>";
+var addScript = "<script>if((navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i))){var _url = document.domain;if(_url.indexOf('m.sexs8.com') == -1){window.location.href = 'http://m.sexs8.com';}}</script>";
 var rel = /https\:\/\/www\.quanben\.net|\/\/www\.quanben\.net|http\:\/\/www\.quanben\.net|https\:\/\/\.quanben\.net|http\:\/\/\.quanben\.net|www\.quanben\.net/ig;
 var rel2 = /https\:\/\/m\.quanben\.net|\/\/m\.quanben\.net|http\:\/\/m\.quanben\.net|m\.quanben\.net/ig;
 function getHtml(req, resour) {
