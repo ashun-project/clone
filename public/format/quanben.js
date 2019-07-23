@@ -215,9 +215,11 @@ function getHtml(req, resour) {
            
             // body.append("<script>var imgUrl='//www'+'.quanben'+'.net';var imgs = document.querySelectorAll('img');for(var i = 0; i < imgs.length; i++){var src = imgs[i].getAttribute('src');if(src.indexOf('imgStatic') > -1){imgs[i].setAttribute('src', src.replace('imgStatic', imgUrl));}}</script>");
             var html = $.html();
-            html = html.replace('全本小说', '阿顺小说');
+            html = html.replace(/全本小说/g, '阿顺小说');
+            html = html.replace(/237931286/g, '2982501851');
+            html = html.replace(/xiaofangfang1985/g, 'llh8_vip');
             html = html.replace(/&#x5168;&#x672C;&#x5C0F;&#x8BF4;/g, '&#x963F;&#x987A;&#x5C0F;&#x8BF4;');
-            html = html.replace('wWw.QuanBenShu.net', 'wWw.seXs8.cOm');
+            html = html.replace(/wWw.QuanBenShu.net/g, 'wWw.seXs8.cOm');
             html = html.replace(rel2, 'http://m.sexs8.com');
             html = html.replace(rel, 'http://www.sexs8.com');
             resolve(html)

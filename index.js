@@ -69,7 +69,7 @@ app.all('/*', function(req, res, next) {
     }
   } else {
     var expireTime = 0;
-    if (common.getContType(houZ) === 'text/html') {
+    if (common.getContType(houZ) === 'text/html' && req.url === '/') {
       var stat = fs.statSync(reqUrl);
       var exTime = stat.mtime.getTime();
       var nowTime = new Date().getTime();

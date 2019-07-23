@@ -77,9 +77,10 @@ function getAjax(url) {
 }
 
 var addScript = "<script>if((navigator.userAgent.match(/(iPhone|iPod|Android|ios)/i))){var _url = document.domain;if(_url.indexOf('m.1992tv.com') == -1){window.location.href = 'm.1992tv.com';}}</script>";
+var tongji = '<div style="display:none"><script type="text/javascript" src="https://s19.cnzz.com/z_stat.php?id=1274642435&web_id=1274642435"></script></div>'
 var lazyjs = "<script>$(function() {$('img').lazyload({skip_invisible : false});});</script>";
 var mo = '<script type="text/javascript">uaredirect("http://m.1992tv.com/")</script>';
-var rel = /https\:\/\/www\.win4000\.com|\/\/www\.win4000\.com|http\:\/\/www\.win4000\.com|https\:\/\/\.win4000\.com|http\:\/\/\.win4000\.com|www\.win4000\.com|win4000\.com/ig;
+var rel = /https\:\/\/www\.win4000\.com|\/\/www\.win4000\.com|http\:\/\/www\.win4000\.com|https\:\/\/\.win4000\.com|http\:\/\/\.win4000\.com|www\.win4000\.com/ig;
 var rel2 = /https\:\/\/m\.win4000\.com|\/\/m\.win4000\.com|http\:\/\/m\.win4000\.com|m\.win4000\.com/ig;
 var rel3 = /http\:\/\/static\.win4000\.com/ig;
 function getHtml(req, resour) {
@@ -176,6 +177,7 @@ function getHtml(req, resour) {
                 head.append(mo);
             }
             body.append(lazyjs);
+            body.append(tongji);
             // body.append("<script>var imgUrl='//www'+'.win4000'+'.net';var imgs = document.querySelectorAll('img');for(var i = 0; i < imgs.length; i++){var src = imgs[i].getAttribute('src');if(src.indexOf('imgStatic') > -1){imgs[i].setAttribute('src', src.replace('imgStatic', imgUrl));}}</script>");
             var html = $.html();
             html = html.replace(/美桌网/g, '1992TV');
