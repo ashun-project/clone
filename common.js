@@ -55,16 +55,16 @@ var common = {
       "jpg": "image/jpeg",
       "js": "text/javascript",
       "json": "application/json",
-      "pdf": "application/pdf",
+      // "pdf": "application/pdf",
       "png": "image/png",
       "svg": "image/svg+xml",
       "swf": "application/x-shockwave-flash",
-      "tiff": "image/tiff",
-      "txt": "text/plain",
-      "wav": "audio/x-wav",
-      "wma": "audio/x-ms-wma",
-      "wmv": "video/x-ms-wmv",
-      "xml": "text/xml"
+      "tiff": "image/tiff"
+      // "txt": "text/plain",
+      // "wav": "audio/x-wav",
+      // "wma": "audio/x-ms-wma",
+      // "wmv": "video/x-ms-wmv",
+      // "xml": "text/xml"
     }
     var result = contType[value];
     if (result) {
